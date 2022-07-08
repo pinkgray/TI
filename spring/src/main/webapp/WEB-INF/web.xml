@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <!-- 세령 수정 : spring-security.xml 추가 -->
+    <param-value>
+    	classpath:root-context.xml
+    	/WEB-INF/config/spring-security.xml
+    </param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- <servlet>
+    <servlet-name>appServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/action-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping> -->
+  	<!-- 여행지 세령 -->
+  	<servlet>
+		<servlet-name>spot</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/spot-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spot</servlet-name>
+		<url-pattern>*.sp</url-pattern>
+	</servlet-mapping>
+    <!-- 채팅 지원 -->
+  	<servlet>
+		<servlet-name>Chatting</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/chatting-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Chatting</servlet-name>
+		<url-pattern>*.ch</url-pattern>
+	</servlet-mapping>
+	<!-- 여행 민지 -->
+  	<servlet>
+		<servlet-name>Travel</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/travel-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Travel</servlet-name>
+		<url-pattern>*.trv</url-pattern>
+	</servlet-mapping>
+	<!-- 여행 예랑 -->
+	<servlet>
+		<servlet-name>TravelBoard</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/travelBoard-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TravelBoard</servlet-name>
+		<url-pattern>*.tb</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 통계 예랑 -->
+	<servlet>
+		<servlet-name>Statistics</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/statistics-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Statistics</servlet-name>
+		<url-pattern>*.sta</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 필터 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+		<filter-mapping>
+			<filter-name>encodingFilter</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+ 	<!-- 회원 세령 -->
+	<servlet>
+		<servlet-name>member</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/member-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>member</servlet-name>
+		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 관리자 -추후에 뺄 것  -->
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/admin-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin</servlet-name>
+		<url-pattern>*.ad</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 포인트 수민 -->
+	<servlet>
+		<servlet-name>point</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/point-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>point</servlet-name>
+		<url-pattern>*.po</url-pattern>
+	</servlet-mapping>
+	<!-- 여행 의뢰 선우-->
+	<servlet>
+		<servlet-name>travelRequest</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/travelRequest-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	 <servlet-mapping>
+		<servlet-name>travelRequest</servlet-name>
+		<url-pattern>*.tr</url-pattern>
+	</servlet-mapping>
+  	<!-- 여행 정보 선우 -->
+	<servlet>
+		<servlet-name>myRequest</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/myRequest-servlet.xml</param-value>
+		</init-param>
+	</servlet>  
+	<servlet-mapping>
+		<servlet-name>myRequest</servlet-name>
+		<url-pattern>*.mr</url-pattern>
+	</servlet-mapping>
+	<!-- 고객센터 선우 -->
+	<servlet>
+		<servlet-name>callCenter</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/callCenter-servlet.xml</param-value>
+		</init-param>
+	</servlet>		
+	<servlet-mapping>
+		<servlet-name>callCenter</servlet-name>
+		<url-pattern>*.cc</url-pattern>
+	</servlet-mapping>
+ 	<!-- 신고 및 문의  선우-->
+	<servlet>
+		<servlet-name>penalty</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/travelRequest-servlet.xml</param-value>
+		</init-param>
+	</servlet>		
+	<servlet-mapping>
+		<servlet-name>penalty</servlet-name>
+		<url-pattern>*.pe</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 에러 페이지  오류 -->
+	<error-page>
+			<error-code>400</error-code>
+			<location>/WEB-INF/views/common/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+			<error-code>404</error-code>
+			<location>/WEB-INF/views/common/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+			<error-code>500</error-code>
+			<location>/WEB-INF/views/common/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/views/common/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/views/common/errorPage.jsp</location>
+	</error-page>
+	
+</web-app>
+

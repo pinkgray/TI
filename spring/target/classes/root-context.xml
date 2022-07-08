@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession" />
+	</bean>	
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="ti" />
+		<property name="password" value="ti" />
+		<property name="defaultAutoCommit" value="false"/>
+	</bean>	
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 어노테이션으로 트랜잭션 매니저를 설정하기 위해 추가 설정 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 트랜잭션 매니저를 이용해 tx advice를 정의한다. -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 메소드 정의 -->
+			<!-- select로 시작하는 메소드에 적용/읽기 전용/Exception발생시 rollback -->
+			<tx:method name="select*" read-only="true" rollback-for="Exception"/>
+			<!-- insert, update, delete로 시작하는 메소드에 적용/Exception발생시 rollback -->
+			<tx:method name="insert*" rollback-for="Exception"
+					propagation="REQUIRED" isolation="DEFAULT"/>
+			<tx:method name="update*" rollback-for="Exception"
+					propagation="REQUIRED" isolation="DEFAULT"/>
+			<tx:method name="delete*" rollback-for="Exception"
+					propagation="REQUIRED" isolation="DEFAULT"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- AOP를 이용하여 위의 txAdvice를 적용시키기 위해 advice객체가 weaving될 시점을 정해준다. -->
+	<!-- pointcut을 등록해야 한다. -->
+	<aop:config proxy-target-class="true">
+		<!-- 포인트컷과 어드바이스를 매칭시킴 -->
+		<!-- expression : 포인트컷 사용 문법 
+		* : 리턴타입
+		.. : 모든 하위-->
+		<!-- * com.kh.tsp..*ServiceImpl : ServiceImpl의 모든 메소드에 적용 -->
+		<aop:pointcut id="serviceMethod"
+				expression="execution(* com.kh.ti..*ServiceImpl.*(..))"/>
+		<aop:advisor id="transactionAdvice" pointcut-ref="serviceMethod"
+				advice-ref="txAdvice"/>
+	</aop:config>
+
+		
+		
+		
+</beans>

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+	
+
+#SearchTable {
+	/* background : black;
+	opacity: 0.5; */
+	margin-left : auto;
+	margin-right : auto;
+}
+
+
+#SearchTable td{
+	color : white;
+	padding : 10px;
+}
+
+#SearchPlace, #SearchCategory{
+	width : 320px;
+}
+
+
+#content {
+   /*  margin: 20px;
+    padding: 10px; */
+/*     background: #393; */
+	padding-top : 20px;
+}
+
+#rank-list a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#rank-list a:hover {
+    text-decoration: underline;
+}
+
+#rank-list {
+    overflow: hidden;
+    width: 100%;
+    height: 20px;
+    margin: 0;
+}
+
+#rank-list dt {
+    display: none;
+}
+
+#rank-list dd {
+    position: relative;
+    margin: 0;
+}
+
+#rank-list ol {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#rank-list li {
+    height: 20px;
+    line-height: 20px;
+}
+
+
+
