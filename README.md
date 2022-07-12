@@ -20,5 +20,5 @@
 ## 화면 구성 
 
 
-<img src="https://user-images.githubusercontent.com/47417567/178406372-4a866d55-ec4c-4c18-b018-fe2d900f2c70.png" width="800" height="400"/>
-
+메인페이지
+<img src="https://user-images.githubusercontent.com/47417567/178406798-07b04644-e4fe-4fca-ae8c-db5992e5cb1e.png" width="800" height="400"/>
