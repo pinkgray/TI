@@ -21,4 +21,4 @@
 
 
 메인페이지
-<img src="https://user-images.githubusercontent.com/47417567/178406798-07b04644-e4fe-4fca-ae8c-db5992e5cb1e.png" width="800" height="400"/>
+<img src="https://user-images.githubusercontent.com/47417567/178406798-07b04644-e4fe-4fca-ae8c-db5992e5cb1e.png" width="800" height="400"/>  
