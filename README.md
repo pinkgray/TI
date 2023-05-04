@@ -44,7 +44,8 @@ node.JS
         });
     });
 ```
-jsp 소스
+
+웹페이지 통신 소스 
 
 ``` javascript 
 
