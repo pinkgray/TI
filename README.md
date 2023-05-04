@@ -22,3 +22,34 @@
 
 ### 메인페이지    
 <img src="https://user-images.githubusercontent.com/47417567/178406798-07b04644-e4fe-4fca-ae8c-db5992e5cb1e.png" width="800" height="400"/>  
+
+
+## 주요 소스 (내가 작성한 소스)
+
+채팅방 - 메시지 일 경우
+
+node.JS
+
+``` javascript
+    socket.on('message' , function(data){
+        var msg = new Message({userId : data.userId , user_name : data.userName , message : data.message , chat_id : data.chatId });
+        msg.save(function(err , data){
+            if (err) {
+                console.log("error");
+            }else {
+                var dbData = {userId : data.userId , userName : data.user_name , message : data.message , chat_id : data.chat_id};
+                io.sockets.emit('message' ,dbData);
+                console.log('message is inserted');
+            }
+        });
+    });
+```
+jsp 소스
+
+``` javascript 
+
+
+
+```
+
+
