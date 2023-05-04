@@ -48,7 +48,28 @@ jsp 소스
 
 ``` javascript 
 
-
+socket.on('message' , function(data){
+  var output = '';             
+  var mchatId = data.chat_id;
+	                
+	if (mchatId == chatId){
+	   	 if (data.userId == userId){
+	 		      output += '<div class="alert alert-info" id = "msg" style = "background : #f1ccfc; border-color: #f1ccfc;"><strong>';                	
+	 	   }else {
+	 	       output += '<div class="alert alert-info" id = "msg"><strong>'; 
+	 	   }
+	     if (data.userName != null){
+	         output += data.userName;
+	     }
+	 	              	               
+	 	  output += '</strong> ';
+	 	  output += data.message;
+      output += '</div>';
+	 	  $(output).appendTo('#chat_box');
+	 	               
+	 	  $("#chat_box").scrollTop($("#chat_box")[0].scrollHeight);
+	  }
+ });
 
 ```
 
